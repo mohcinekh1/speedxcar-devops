@@ -1,0 +1,82 @@
+<div class="auth-page">
+  <section class="auth-visual auth-visual-login" aria-label="SpeedXcar premium">
+    <div class="auth-brand">SpeedXcar</div>
+
+    <div class="auth-visual-content">
+      <h1>Conduisez l'exception</h1>
+      <p>Une selection premium, une reservation fluide et une experience haut de gamme.</p>
+    </div>
+  </section>
+
+  <section class="auth-form-side">
+    <div class="login-container">
+      <p class="auth-kicker">Bienvenue</p>
+      <h2>Connexion</h2>
+      
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-field">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            autocomplete="email"
+            placeholder="vous@exemple.com"
+          />
+
+          <div class="error" *ngIf="email?.invalid && email?.touched">
+            <span *ngIf="email?.errors?.['required']">L'email est requis.</span>
+            <span *ngIf="email?.errors?.['email']">Format d'email invalide.</span>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="password">Mot de passe</label>
+          <div class="password-field">
+            <input
+              id="password"
+              [type]="showPassword ? 'text' : 'password'"
+              formControlName="password"
+              autocomplete="current-password"
+              placeholder="Votre mot de passe"
+            />
+            <button
+              type="button"
+              class="password-toggle"
+              (click)="togglePassword()"
+              [attr.aria-label]="showPassword ? 'Masquer le mot de passe' : 'Afficher le mot de passe'"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+
+          <div class="error" *ngIf="password?.invalid && password?.touched">
+            <span *ngIf="password?.errors?.['required']">Le mot de passe est requis.</span>
+            <span *ngIf="password?.errors?.['minlength']">Minimum 6 caract&egrave;res.</span>
+          </div>
+        </div>
+
+        <div class="form-meta">
+          <label class="remember-choice">
+            <input type="checkbox" />
+            <span>Se souvenir de moi</span>
+          </label>
+          <a routerLink="/register">Mot de passe oubli&eacute; ?</a>
+        </div>
+
+        <button type="submit" [disabled]="isLoading">
+          {{ isLoading ? 'Connexion...' : 'Connexion securisee' }}
+        </button>
+
+        <p class="status-message" *ngIf="submitMessage">{{ submitMessage }}</p>
+        <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+      </form>
+
+      <p>Pas encore de compte ? <a routerLink="/register">S'inscrire</a></p>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,106 @@
+<div class="auth-page">
+  <section class="auth-visual auth-visual-register" aria-label="SpeedXcar premium">
+    <div class="auth-brand">SpeedXcar</div>
+
+    <div class="auth-visual-content">
+      <h1>Votre prochaine aventure commence ici</h1>
+      <p>Choisissez votre vehicule d'exception et profitez d'une experience de location premium.</p>
+    </div>
+  </section>
+
+  <section class="auth-form-side">
+    <div class="register-container">
+      <p class="auth-kicker">Nouveau client</p>
+      <h2>Cr&eacute;er un compte</h2>
+
+
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="form-field">
+          <label for="nom">Nom complet</label>
+          <input id="nom" type="text" formControlName="nom" autocomplete="name" placeholder="Votre nom" />
+
+          <div class="error" *ngIf="nom?.invalid && nom?.touched">
+            <span *ngIf="nom?.errors?.['required']">Le nom est requis.</span>
+            <span *ngIf="nom?.errors?.['minlength']">Minimum 2 caract&egrave;res.</span>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="email">Email</label>
+          <input id="email" type="email" formControlName="email" autocomplete="email" placeholder="votre@email.com" />
+
+          <div class="error" *ngIf="email?.invalid && email?.touched">
+            <span *ngIf="email?.errors?.['required']">L'email est requis.</span>
+            <span *ngIf="email?.errors?.['email']">Format d'email invalide.</span>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="password">Mot de passe</label>
+          <div class="password-field">
+            <input
+              id="password"
+              [type]="showPassword ? 'text' : 'password'"
+              formControlName="password"
+              autocomplete="new-password"
+              placeholder="Votre mot de passe"
+            />
+            <button
+              type="button"
+              class="password-toggle"
+              (click)="togglePassword()"
+              [attr.aria-label]="showPassword ? 'Masquer le mot de passe' : 'Afficher le mot de passe'"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+          <div class="error" *ngIf="password?.invalid && password?.touched">
+            <span *ngIf="password?.errors?.['required']">Le mot de passe est requis.</span>
+            <span *ngIf="password?.errors?.['minlength']">Minimum 6 caract&egrave;res.</span>
+          </div>
+
+        </div>
+
+        <div class="form-field">
+          <label for="confirmPassword">Confirmer le mot de passe</label>
+          <div class="password-field">
+            <input
+              id="confirmPassword"
+              [type]="showConfirmPassword ? 'text' : 'password'"
+              formControlName="confirmPassword"
+              autocomplete="new-password"
+              placeholder="Confirmer votre mot de passe"
+            />
+            <button
+              type="button"
+              class="password-toggle"
+              (click)="toggleConfirmPassword()"
+              [attr.aria-label]="showConfirmPassword ? 'Masquer la confirmation' : 'Afficher la confirmation'"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+
+          <div class="error" *ngIf="confirmPassword?.touched && registerForm.errors?.['passwordsMismatch']">
+            <span>Les mots de passe ne correspondent pas.</span>
+          </div>
+        </div>
+
+        <button type="submit" [disabled]="isLoading">
+          {{ isLoading ? 'Inscription...' : "S'inscrire" }}
+        </button>
+
+        <p class="status-message" *ngIf="submitMessage">{{ submitMessage }}</p>
+        <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+      </form>
+
+      <p>D&eacute;j&agrave; un compte ? <a routerLink="/login">Se connecter</a></p>
+    </div>
+  </section>
+</div>

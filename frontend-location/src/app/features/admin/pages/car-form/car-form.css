@@ -1,0 +1,374 @@
+.admin-form-page {
+  min-height: 100vh;
+  padding: 36px;
+  background:
+    radial-gradient(circle at top right, rgba(255, 159, 10, 0.16), transparent 30%),
+    linear-gradient(135deg, #050910 0%, #071018 48%, #0b1220 100%);
+  color: #ffffff;
+  font-family: 'Poppins', 'Inter', 'Segoe UI', sans-serif;
+}
+
+.form-shell {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.form-hero,
+.form-layout,
+.panel-title,
+.available-field,
+.form-actions {
+  display: flex;
+}
+
+.form-hero {
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.section-label {
+  margin: 0 0 8px;
+  color: var(--color-primary);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.form-hero h1,
+.panel-title h2,
+.preview-panel h2 {
+  margin: 0;
+  color: #ffffff;
+}
+
+.form-hero h1 {
+  font-size: 42px;
+  line-height: 1;
+}
+
+.form-hero span,
+.panel-title p,
+.preview-category,
+.image-path {
+  color: #8aa0b6;
+  font-weight: 700;
+}
+
+.form-hero span {
+  display: block;
+  margin-top: 12px;
+}
+
+.back-link,
+.cancel-btn,
+.form-actions button {
+  border: 0;
+  border-radius: 12px;
+  padding: 13px 18px;
+  font-family: inherit;
+  font-weight: 900;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.back-link,
+.cancel-btn {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(#101923, #101923) padding-box,
+    var(--button-gradient) border-box;
+  color: #ffffff;
+}
+
+.back-link:hover,
+.cancel-btn:hover,
+.form-actions button:hover,
+.image-option:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+}
+
+.form-layout {
+  align-items: flex-start;
+  gap: 22px;
+}
+
+.form-main {
+  display: grid;
+  gap: 18px;
+  flex: 1;
+  min-width: 0;
+}
+
+.form-panel,
+.preview-panel {
+  border: 1px solid rgba(138, 160, 182, 0.2);
+  border-radius: 20px;
+  background: rgba(16, 25, 35, 0.88);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(18px);
+}
+
+.form-panel {
+  padding: 22px;
+}
+
+.panel-title {
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.panel-title span {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border-radius: 12px;
+  background: rgba(91, 53, 232, 0.16);
+  color: var(--color-primary);
+  font-weight: 900;
+}
+
+.panel-title h2 {
+  font-size: 22px;
+}
+
+.panel-title p {
+  margin: 7px 0 0;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field label,
+.available-field {
+  margin-bottom: 8px;
+  color: #8aa0b6;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.form-field input,
+.form-field select {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #2d4053;
+  border-radius: 12px;
+  background: #071018;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  outline: none;
+}
+
+.form-field input:focus,
+.form-field select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px var(--color-focus);
+}
+
+.available-field {
+  align-items: center;
+  gap: 10px;
+  margin: 29px 0 0;
+}
+
+.available-field input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-primary);
+}
+
+.image-options {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.image-option {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid #2d4053;
+  border-radius: 14px;
+  background: #ffffff;
+  color: #ffffff;
+  text-align: left;
+  cursor: pointer;
+}
+
+.image-option.selected {
+  border-color: transparent;
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    var(--button-gradient) border-box;
+  box-shadow: 0 0 0 4px rgba(255, 159, 10, 0.14), 0 0 24px rgba(91, 53, 232, 0.18);
+}
+
+.image-option img,
+.preview-panel img {
+  width: 100%;
+  background: #ffffff;
+  object-fit: contain;
+}
+
+.image-option img {
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+}
+
+.image-option span {
+  color: #061018;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.image-path {
+  margin: 12px 0 0;
+  font-size: 13px;
+  word-break: break-all;
+}
+
+.preview-panel {
+  position: sticky;
+  top: 24px;
+  width: 360px;
+  padding: 22px;
+}
+
+.preview-panel img {
+  height: 210px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.preview-panel h2 {
+  margin-top: 18px;
+  font-size: 26px;
+}
+
+.preview-category {
+  display: block;
+  margin-top: 7px;
+}
+
+.preview-specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0;
+}
+
+.preview-specs span {
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #8aa0b6;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.preview-panel strong {
+  display: block;
+  color: #ffffff;
+  font-size: 26px;
+}
+
+.preview-panel small {
+  color: #8aa0b6;
+  font-size: 13px;
+}
+
+.form-actions {
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.form-actions button {
+  flex: 1;
+  min-width: 0;
+  background: var(--button-gradient);
+  color: #ffffff;
+  box-shadow: var(--button-shadow);
+}
+
+.cancel-btn {
+  flex: 1;
+  text-align: center;
+}
+
+.form-actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.62;
+}
+
+.error,
+.error-message {
+  color: var(--color-error);
+}
+
+.error {
+  margin: 7px 0 0;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.error-message {
+  margin: 0 0 18px;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 45, 85, 0.3);
+  border-radius: 14px;
+  background: rgba(255, 45, 85, 0.1);
+  font-weight: 900;
+}
+
+@media (max-width: 980px) {
+  .form-layout {
+    flex-direction: column;
+  }
+
+  .preview-panel {
+    position: static;
+    width: 100%;
+  }
+}
+
+@media (max-width: 680px) {
+  .admin-form-page {
+    padding: 22px;
+  }
+
+  .form-hero {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .form-hero h1 {
+    font-size: 34px;
+  }
+
+  .form-grid,
+  .image-options {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+}

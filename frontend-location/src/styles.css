@@ -1,0 +1,33 @@
+html,
+body {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --color-primary: #5b35e8;
+  --color-primary-dark: #4424c8;
+  --color-accent: #ff9f0a;
+  --color-bg: #050816;
+  --color-surface: #ffffff;
+  --color-surface-soft: #f7f4ff;
+  --color-surface-dark: #0b0a17;
+  --color-text: #07111f;
+  --color-text-muted: #64748b;
+  --color-text-light: #ffffff;
+  --color-border: #ddd6f7;
+  --color-error: #ff2d55;
+  --color-success: #5b35e8;
+  --color-focus: rgba(91, 53, 232, 0.2);
+  --button-gradient: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+  --button-gradient-hover: linear-gradient(135deg, var(--color-accent) 0%, var(--color-primary) 100%);
+  --button-shadow: 0 18px 42px rgba(91, 53, 232, 0.22), 0 12px 32px rgba(255, 159, 10, 0.2);
+  --shadow-premium: 0 24px 60px rgba(5, 8, 22, 0.18);
+}

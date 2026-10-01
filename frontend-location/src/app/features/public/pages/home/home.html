@@ -1,0 +1,204 @@
+<main class="home-page">
+  <header class="site-header">
+    <a routerLink="/home" class="brand-link" aria-label="SpeedXcar home">
+      <span class="brand-icon" aria-hidden="true">
+        <img src="/assets/images/logo-speedxcar.png" alt="">
+      </span>
+      <span>SpeedXcar</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Navigation principale">
+      <a routerLink="/home" class="nav-button active" aria-current="page">Home</a>
+      <a routerLink="/vehicles" class="nav-button">Vehicles</a>
+      <a routerLink="/vehicles" class="nav-button">About Us</a>
+      <a routerLink="/vehicles" class="nav-button">Contact Us</a>
+    </nav>
+
+    <div class="help-box">
+      <span aria-hidden="true">Call</span>
+      <p>Need help?<strong>+996 247-1680</strong></p>
+    </div>
+  </header>
+
+  <section class="hero-panel">
+    <div class="hero-copy">
+      <h1>Experience the road like never before</h1>
+      <p>Premium cars, simple reservations and a smooth rental experience for every trip.</p>
+      <a routerLink="/vehicles" class="primary-link">View all cars</a>
+    </div>
+
+    <img class="hero-car" src="/assets/images/cars/SPORT/sport2.png" alt="Premium sport car">
+
+    <form class="booking-card" [formGroup]="bookingForm" (ngSubmit)="onBookCar()">
+      <h2>Book your car</h2>
+
+      <label>
+        <span>Car type</span>
+        <select formControlName="carType">
+          <option value="">Choose type</option>
+          <option *ngFor="let type of carTypes" [value]="type">{{ type }}</option>
+        </select>
+      </label>
+
+      <label>
+        <span>Place of rental</span>
+        <input type="text" formControlName="rentalPlace" placeholder="City">
+      </label>
+
+      <label>
+        <span>Place of return</span>
+        <input type="text" formControlName="returnPlace" placeholder="City">
+      </label>
+
+      <label>
+        <span>Rental date</span>
+        <input type="date" formControlName="rentalDate">
+      </label>
+
+      <label>
+        <span>Return date</span>
+        <input type="date" formControlName="returnDate">
+      </label>
+
+      <button type="submit">Book now</button>
+      <p class="form-message" *ngIf="bookingMessage">{{ bookingMessage }}</p>
+    </form>
+  </section>
+
+  <section class="feature-row" aria-label="Services">
+    <article *ngFor="let feature of features">
+      <img [src]="feature.icon" alt="">
+      <h2>{{ feature.title }}</h2>
+      <p>{{ feature.text }}</p>
+    </article>
+  </section>
+
+  <section class="steps-section">
+    <div class="steps-image">
+      <img src="/assets/images/onboarding-choose-car.jpg" alt="Car rental experience">
+    </div>
+
+    <div class="steps-list">
+      <article *ngFor="let step of steps; let index = index">
+        <strong>{{ index + 1 }}</strong>
+        <div>
+          <h2>{{ step }}</h2>
+          <p>Clear steps keep the reservation simple before we connect it to the backend.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="popular-section">
+    <div class="section-head">
+      <h2>Choose the car that suits you</h2>
+      <a routerLink="/vehicles">View All</a>
+    </div>
+
+    <div class="home-car-grid">
+      <app-vehicle-card
+        *ngFor="let car of popularCars; trackBy: trackByCarId"
+        [car]="car"
+      ></app-vehicle-card>
+    </div>
+  </section>
+
+  <section class="facts-band">
+    <img src="/assets/images/cars/SPORT/sport1.png" alt="">
+    <div>
+      <h2>Facts In Numbers</h2>
+      <p>SpeedXcar gives you a premium rental experience with reliable vehicles and simple booking.</p>
+    </div>
+
+    <div class="stat-grid">
+      <article *ngFor="let stat of stats">
+        <strong>{{ stat.value }}</strong>
+        <span>{{ stat.label }}</span>
+      </article>
+    </div>
+  </section>
+
+  <section class="app-section">
+    <div>
+      <h2>Download mobile app</h2>
+      <p>Reserve faster, manage your profile and follow your booking from your phone.</p>
+      <div class="store-row">
+        <span>Download on the App Store</span>
+        <span>Get it on Google Play</span>
+      </div>
+    </div>
+
+    <div class="phone-stack" aria-hidden="true">
+      <span></span>
+      <span></span>
+    </div>
+  </section>
+
+  <section class="search-band">
+    <div>
+      <h2>Enjoy every mile with adorable companionship.</h2>
+      <p>Search by city and find the right car for your next road.</p>
+      <form>
+        <input type="text" placeholder="City">
+        <button type="button">Search</button>
+      </form>
+    </div>
+    <img src="/assets/images/cars/SUV/suv-3.png" alt="">
+  </section>
+
+  <footer class="public-footer">
+    <div class="footer-top">
+      <a routerLink="/home" class="brand-link footer-brand" aria-label="SpeedXcar home">
+        <span class="brand-icon" aria-hidden="true">
+          <img src="/assets/images/logo-speedxcar.png" alt="">
+        </span>
+        <span>SpeedXcar</span>
+      </a>
+
+      <div class="footer-contact">
+        <span>Address<strong>Oxford Ave. Cary, NC 27511</strong></span>
+        <span>Email<strong>nwiger@yahoo.com</strong></span>
+        <span>Phone<strong>+537 547-6401</strong></span>
+      </div>
+    </div>
+
+    <div class="footer-grid">
+      <div>
+        <h3>Faucibus faucibus pellentesque dictum turpis.</h3>
+        <p>Id pellentesque turpis massa a id iaculis lorem t...</p>
+        <div class="social-links">
+          <a href="#">f</a>
+          <a href="#">ig</a>
+          <a href="#">x</a>
+          <a href="#">yt</a>
+        </div>
+      </div>
+
+      <div>
+        <h3>Useful links</h3>
+        <a routerLink="/vehicles">About us</a>
+        <a routerLink="/vehicles">Contact us</a>
+        <a routerLink="/vehicles">Gallery</a>
+        <a routerLink="/vehicles">Blog</a>
+        <a routerLink="/vehicles">F.A.Q</a>
+      </div>
+
+      <div>
+        <h3>Vehicles</h3>
+        <a routerLink="/vehicles">Sedan</a>
+        <a routerLink="/vehicles">Cabriolet</a>
+        <a routerLink="/vehicles">Sport</a>
+        <a routerLink="/vehicles">Minivan</a>
+        <a routerLink="/vehicles">SUV</a>
+      </div>
+
+      <div>
+        <h3>Download App</h3>
+        <span class="store-badge">Download on the App Store</span>
+        <span class="store-badge">Get it on Google Play</span>
+      </div>
+    </div>
+
+    <p class="copyright">Copyright SpeedXcar 2024. Design by Figma.guru</p>
+  </footer>
+</main>

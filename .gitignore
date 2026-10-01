@@ -28,6 +28,7 @@ frontend-location/dist/
 frontend-location/.angular/
 frontend-location/.cache/
 frontend-location/coverage/
+frontend-location/.git-backup/
 
 # Spring Boot / Backend
 speedXcar/target/

@@ -1,0 +1,43 @@
+<article class="vehicle-card">
+  <div
+    class="vehicle-media"
+    [class.is-suv]="isSuv"
+    [class.is-sport]="car.category === 'Sport' || car.category === 'Cabriolet'"
+    [class.is-van]="car.category === 'Van' || car.category === 'Minivan'"
+  >
+    <span class="car-shadow" aria-hidden="true"></span>
+    <img
+      *ngIf="hasCustomCarImage"
+      class="car-image"
+      [src]="imageUrl"
+      [alt]="car.brand + ' ' + car.model"
+      (error)="onImageError($event)"
+    >
+    <span *ngIf="!hasCustomCarImage" class="car-silhouette" aria-hidden="true">
+      <span class="wheel wheel-left"></span>
+      <span class="wheel wheel-right"></span>
+    </span>
+  </div>
+
+  <div class="vehicle-content">
+    <div class="vehicle-head">
+      <div>
+        <h2>{{ car.brand }}</h2>
+        <p>{{ car.category }}</p>
+      </div>
+
+      <div class="vehicle-price">
+        <strong>${{ car.pricePerDay }}</strong>
+        <span>per day</span>
+      </div>
+    </div>
+
+    <div class="vehicle-specs">
+      <span><b class="gear-icon"></b>{{ car.gearBox }}</span>
+      <span><b class="fuel-icon"></b>PB 95</span>
+      <span><b class="snow-icon"></b>Air Conditioner</span>
+    </div>
+
+    <button type="button" class="details-button" [routerLink]="['/details', car.id ?? 1]">View Details</button>
+  </div>
+</article>

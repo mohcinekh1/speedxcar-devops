@@ -1,0 +1,163 @@
+<main class="admin-form-page">
+  <section class="form-shell">
+    <header class="form-hero">
+      <div>
+        <p class="section-label">Administration</p>
+        <h1>{{ isEditMode ? 'Modifier voiture' : 'Ajouter voiture' }}</h1>
+        <span>Configure les informations visibles dans le catalogue SpeedXcar.</span>
+      </div>
+
+      <a routerLink="/admin/cars" class="back-link">Retour au catalogue</a>
+    </header>
+
+    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+    <form class="form-layout" [formGroup]="carForm" (ngSubmit)="onSubmit()">
+      <div class="form-main">
+        <section class="form-panel">
+          <div class="panel-title">
+            <span>01</span>
+            <div>
+              <h2>Identite du vehicule</h2>
+              <p>Nom, categorie et prix affiche dans le CRUD.</p>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="brand">Marque</label>
+              <input id="brand" type="text" formControlName="brand" placeholder="BMW">
+              <p class="error" *ngIf="brand?.touched && brand?.invalid">La marque est obligatoire.</p>
+            </div>
+
+            <div class="form-field">
+              <label for="model">Modele</label>
+              <input id="model" type="text" formControlName="model" placeholder="M4 Competition">
+              <p class="error" *ngIf="model?.touched && model?.invalid">Le modele est obligatoire.</p>
+            </div>
+
+            <div class="form-field">
+              <label for="category">Categorie</label>
+              <select id="category" formControlName="category">
+                <option value="">Choisir une categorie</option>
+                <option value="Sedan">Sedan</option>
+                <option value="SUV">SUV</option>
+                <option value="Sport">Sport</option>
+                <option value="Cabriolet">Cabriolet</option>
+                <option value="Minivan">Minivan</option>
+              </select>
+              <p class="error" *ngIf="category?.touched && category?.invalid">La categorie est obligatoire.</p>
+            </div>
+
+            <div class="form-field">
+              <label for="pricePerDay">Prix par jour</label>
+              <input id="pricePerDay" type="number" formControlName="pricePerDay" placeholder="500">
+              <p class="error" *ngIf="pricePerDay?.touched && pricePerDay?.invalid">Le prix est obligatoire.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="form-panel">
+          <div class="panel-title">
+            <span>02</span>
+            <div>
+              <h2>Specifications</h2>
+              <p>Elements techniques utilises dans les cartes voiture.</p>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="gearBox">Boite vitesse</label>
+              <select id="gearBox" formControlName="gearBox">
+                <option value="">Choisir</option>
+                <option value="Automat">Automat</option>
+                <option value="Manual">Manual</option>
+              </select>
+              <p class="error" *ngIf="gearBox?.touched && gearBox?.invalid">La boite vitesse est obligatoire.</p>
+            </div>
+
+            <div class="form-field">
+              <label for="fuel">Carburant</label>
+              <select id="fuel" formControlName="fuel">
+                <option value="">Choisir</option>
+                <option value="Petrol">Petrol</option>
+                <option value="Diesel">Diesel</option>
+                <option value="Hybrid">Hybrid</option>
+                <option value="Electric">Electric</option>
+              </select>
+              <p class="error" *ngIf="fuel?.touched && fuel?.invalid">Le carburant est obligatoire.</p>
+            </div>
+
+            <div class="form-field">
+              <label for="doors">Portes</label>
+              <input id="doors" type="number" formControlName="doors" min="1">
+              <p class="error" *ngIf="doors?.touched && doors?.invalid">Nombre de portes invalide.</p>
+            </div>
+
+            <div class="form-field">
+              <label for="seats">Places</label>
+              <input id="seats" type="number" formControlName="seats" min="1">
+              <p class="error" *ngIf="seats?.touched && seats?.invalid">Nombre de places invalide.</p>
+            </div>
+
+            <label class="available-field">
+              <input type="checkbox" formControlName="available">
+              <span>Voiture disponible</span>
+            </label>
+          </div>
+        </section>
+
+        <section class="form-panel">
+          <div class="panel-title">
+            <span>03</span>
+            <div>
+              <h2>Image catalogue</h2>
+              <p>Choisis une image existante dans les assets Angular.</p>
+            </div>
+          </div>
+
+          <input id="imageUrl" type="hidden" formControlName="imageUrl">
+
+          <div class="image-options">
+            <button
+              type="button"
+              class="image-option"
+              *ngFor="let option of imageOptions"
+              [class.selected]="carForm.value.imageUrl === option.value"
+              (click)="selectImage(option.value)"
+            >
+              <img [src]="option.value" [alt]="option.label" (error)="onImageError($event)">
+              <span>{{ option.label }}</span>
+            </button>
+          </div>
+
+          <p class="image-path" *ngIf="carForm.value.imageUrl">{{ carForm.value.imageUrl }}</p>
+          <p class="error" *ngIf="imageUrl?.touched && imageUrl?.invalid">L image est obligatoire.</p>
+        </section>
+      </div>
+
+      <aside class="preview-panel">
+        <p class="section-label">Preview</p>
+        <img [src]="getImageUrl(carForm.value.imageUrl)" alt="Apercu voiture" (error)="onImageError($event)">
+        <h2>{{ carForm.value.brand || 'Marque' }} {{ carForm.value.model || 'Modele' }}</h2>
+        <span class="preview-category">{{ carForm.value.category || 'Categorie' }}</span>
+
+        <div class="preview-specs">
+          <span>{{ carForm.value.gearBox || 'Boite' }}</span>
+          <span>{{ carForm.value.fuel || 'Carburant' }}</span>
+          <span>{{ carForm.value.seats || 0 }} places</span>
+        </div>
+
+        <strong>{{ carForm.value.pricePerDay || 0 }} DH <small>/ jour</small></strong>
+
+        <div class="form-actions">
+          <a routerLink="/admin/cars" class="cancel-btn">Annuler</a>
+          <button type="submit" [disabled]="isLoading">
+            {{ isLoading ? 'Enregistrement...' : (isEditMode ? 'Modifier' : 'Ajouter') }}
+          </button>
+        </div>
+      </aside>
+    </form>
+  </section>
+</main>

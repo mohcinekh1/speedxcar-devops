@@ -1,0 +1,121 @@
+import { Car } from '../models/car.model';
+
+export const DEMO_CARS: Car[] = [
+  {
+    id: 1,
+    brand: 'Mercedes',
+    model: 'C Class',
+    category: 'Sedan',
+    pricePerDay: '25',
+    gearBox: 'Automat',
+    fuel: 'Petrol',
+    doors: 4,
+    seats: 5,
+    imageUrl: '/assets/images/cars/SEDAN/sedan1.png',
+    available: true
+  },
+  {
+    id: 2,
+    brand: 'Mercedes',
+    model: 'AMG GT',
+    category: 'Sport',
+    pricePerDay: '50',
+    gearBox: 'Manual',
+    fuel: 'Petrol',
+    doors: 2,
+    seats: 2,
+    imageUrl: '/assets/images/cars/SPORT/sport1.png',
+    available: true
+  },
+  {
+    id: 3,
+    brand: 'Mercedes',
+    model: 'E Class',
+    category: 'Sedan',
+    pricePerDay: '45',
+    gearBox: 'Automat',
+    fuel: 'Petrol',
+    doors: 4,
+    seats: 5,
+    imageUrl: '/assets/images/cars/SEDAN/sedan2.png',
+    available: true
+  },
+  {
+    id: 4,
+    brand: 'Porsche',
+    model: 'Cayenne',
+    category: 'SUV',
+    pricePerDay: '40',
+    gearBox: 'Automat',
+    fuel: 'Petrol',
+    doors: 4,
+    seats: 5,
+    imageUrl: '/assets/images/cars/SUV/suv-1.png',
+    available: true
+  },
+  {
+    id: 5,
+    brand: 'Toyota',
+    model: 'Camry',
+    category: 'Sedan',
+    pricePerDay: '35',
+    gearBox: 'Manual',
+    fuel: 'Hybrid',
+    doors: 4,
+    seats: 5,
+    imageUrl: '/assets/images/cars/SEDAN/sedan3.png',
+    available: true
+  },
+  {
+    id: 6,
+    brand: 'Porsche',
+    model: 'Macan',
+    category: 'SUV',
+    pricePerDay: '50',
+    gearBox: 'Automat',
+    fuel: 'Petrol',
+    doors: 4,
+    seats: 5,
+    imageUrl: '/assets/images/cars/SUV/suv-2.png',
+    available: true
+  },
+  {
+    id: 7,
+    brand: 'Mercedes',
+    model: 'V Class',
+    category: 'Van',
+    pricePerDay: '50',
+    gearBox: 'Automat',
+    fuel: 'Diesel',
+    doors: 5,
+    seats: 7,
+    imageUrl: '/assets/images/cars/MINIVAN/minivan1.png',
+    available: true
+  },
+  {
+    id: 8,
+    brand: 'Toyota',
+    model: 'Supra',
+    category: 'Sport',
+    pricePerDay: '60',
+    gearBox: 'Manual',
+    fuel: 'Petrol',
+    doors: 2,
+    seats: 2,
+    imageUrl: '/assets/images/cars/SPORT/sport2.png',
+    available: true
+  },
+  {
+    id: 9,
+    brand: 'Maybach',
+    model: 'S Class',
+    category: 'Sedan',
+    pricePerDay: '70',
+    gearBox: 'Automat',
+    fuel: 'Petrol',
+    doors: 4,
+    seats: 5,
+    imageUrl: '/assets/images/cars/SEDAN/sedan1.png',
+    available: true
+  }
+];

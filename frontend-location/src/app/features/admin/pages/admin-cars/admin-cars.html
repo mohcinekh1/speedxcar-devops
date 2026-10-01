@@ -1,0 +1,109 @@
+<main class="admin-page">
+  <section class="admin-shell">
+    <header class="admin-hero">
+      <div>
+        <p class="section-label">Administration</p>
+        <h1>Gestion des voitures</h1>
+        <span class="hero-text">Catalogue admin, disponibilite et tarifs du parc SpeedXcar.</span>
+      </div>
+
+      <a routerLink="/admin/cars/new" class="primary-action">
+        <span>+</span>
+        Ajouter voiture
+      </a>
+    </header>
+
+    <section class="metrics-grid">
+      <article class="metric-card">
+        <span>Total voitures</span>
+        <strong>{{ totalCars }}</strong>
+      </article>
+
+      <article class="metric-card">
+        <span>Disponibles</span>
+        <strong>{{ availableCars }}</strong>
+      </article>
+
+      <article class="metric-card">
+        <span>Indisponibles</span>
+        <strong>{{ unavailableCars }}</strong>
+      </article>
+
+      <article class="metric-card">
+        <span>Prix moyen</span>
+        <strong>{{ averagePricePerDay }}</strong>
+      </article>
+    </section>
+
+    <p class="message error" *ngIf="errorMessage">{{ errorMessage }}</p>
+    <p class="message success" *ngIf="successMessage">{{ successMessage }}</p>
+
+    <section class="catalog-panel">
+      <div class="panel-head">
+        <div>
+          <p class="section-label">Catalogue</p>
+          <h2>Vehicules en base</h2>
+        </div>
+
+        <button type="button" class="ghost-action" (click)="loadCars()" [disabled]="isLoading">
+          {{ isLoading ? 'Chargement...' : 'Actualiser' }}
+        </button>
+      </div>
+
+      <div class="loading-state" *ngIf="isLoading">
+        <span></span>
+        Chargement des voitures...
+      </div>
+
+      <div class="empty-state" *ngIf="!isLoading && cars.length === 0 && !errorMessage">
+        <h3>Aucune voiture ajoutee</h3>
+        <p>Ajoute ton premier vehicule pour commencer a gerer le parc.</p>
+        <a routerLink="/admin/cars/new" class="primary-action small">Ajouter voiture</a>
+      </div>
+
+      <div class="cars-table" *ngIf="!isLoading && cars.length > 0">
+        <div class="table-head">
+          <span>Voiture</span>
+          <span>Specification</span>
+          <span>Prix</span>
+          <span>Statut</span>
+          <span>Actions</span>
+        </div>
+
+        <div class="table-row" *ngFor="let car of cars; trackBy: trackByCarId">
+          <div class="vehicle-cell">
+            <img [src]="getImageUrl(car.imageUrl)" [alt]="car.brand + ' ' + car.model" (error)="onImageError($event)">
+            <div>
+              <strong>{{ car.brand }} {{ car.model }}</strong>
+              <span>#{{ car.id }} · {{ car.category }}</span>
+            </div>
+          </div>
+
+          <div class="specs-cell">
+            <span>{{ car.gearBox }}</span>
+            <span>{{ car.fuel }}</span>
+            <span>{{ car.seats }} places</span>
+          </div>
+
+          <strong class="price-cell">{{ formatPrice(car.pricePerDay) }} <small>/ jour</small></strong>
+
+          <span class="status-pill" [class.is-active]="car.available" [class.is-muted]="!car.available">
+            {{ car.available ? 'Disponible' : 'Indisponible' }}
+          </span>
+
+          <div class="actions">
+            <a [routerLink]="['/admin/cars/edit', car.id]" class="edit-btn">Modifier</a>
+            <button
+              type="button"
+              class="delete-btn"
+              [disabled]="deletingCarId === car.id"
+              (click)="deleteCar(car.id!)"
+            >
+              {{ deletingCarId === car.id ? 'Suppression...' : 'Supprimer' }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+</main>

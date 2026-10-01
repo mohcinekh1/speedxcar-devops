@@ -1,0 +1,154 @@
+<main class="vehicles-page">
+  <header class="site-header">
+    <a routerLink="/home" class="brand-link" aria-label="SpeedXcar home">
+      <span class="brand-icon" aria-hidden="true">
+        <img src="/assets/images/logo-speedxcar.png" alt="">
+      </span>
+      <span>SpeedXcar</span>
+    </a>
+
+    <nav
+      class="site-nav"
+      aria-label="Navigation principale"
+      (pointermove)="moveMagnet($event, '.nav-button', 180, 1.12, 9)"
+      (pointerleave)="resetMagnet($event, '.nav-button')"
+    >
+      <a routerLink="/home" class="nav-button"><span>Home</span></a>
+      <a routerLink="/vehicles" class="nav-button active" aria-current="page"><span>Vehicles</span></a>
+      <a routerLink="/vehicles" class="nav-button"><span>About Us</span></a>
+      <a routerLink="/vehicles" class="nav-button"><span>Contact Us</span></a>
+    </nav>
+
+    <div class="help-box">
+      <span aria-hidden="true">
+        <svg viewBox="0 0 24 24" focusable="false">
+          <path d="M7.6 4.5 10 7.8c.4.5.3 1.2-.2 1.6l-1.3 1c1 2 2.6 3.6 4.6 4.6l1-1.3c.4-.5 1.1-.6 1.6-.2l3.3 2.4c.6.4.7 1.2.3 1.8-.8 1.2-2.2 1.8-3.6 1.5C10 17.8 6.2 14 5.1 8.3 4.8 6.9 5.4 5.5 6.6 4.7c.3-.2.7-.3 1-.2Z"/>
+        </svg>
+      </span>
+      <p>Need help?<strong>+996 247-1680</strong></p>
+    </div>
+  </header>
+
+  <section class="vehicles-hero">
+    <h1>Select a vehicle group</h1>
+
+    <div
+      class="category-filter"
+      aria-label="Vehicle categories"
+      (pointermove)="moveMagnet($event, 'button', 230, 1.12, 10)"
+      (pointerleave)="resetMagnet($event, 'button')"
+    >
+      <button
+        type="button"
+        *ngFor="let category of categories"
+        [class.active]="selectedCategory === category"
+        [class.large-category-icon]="category === 'Sedan' || category === 'Cabriolet' || category === 'Sport'"
+        (click)="selectCategory(category)"
+      >
+        <img
+          *ngIf="getCategoryIcon(category) as categoryIcon"
+          class="category-image"
+          [src]="categoryIcon"
+          alt=""
+          aria-hidden="true"
+        >
+        {{ category }}
+      </button>
+    </div>
+  </section>
+
+  <p class="loading-message" *ngIf="isLoading && !cars.length">Chargement des voitures...</p>
+
+  <section class="vehicles-grid" aria-label="Liste des vehicules">
+    <app-vehicle-card
+      *ngFor="let car of filteredCars; trackBy: trackByCarId"
+      [car]="car"
+    ></app-vehicle-card>
+  </section>
+
+  <section class="brand-strip" aria-label="Marques partenaires">
+    <span class="brand-logo">
+      <img src="/assets/images/logo/toyota-logo.png" alt="Toyota">
+    </span>
+    <span class="brand-logo">
+      <img src="/assets/images/logo/cadillac-logo.png" alt="Cadillac">
+    </span>
+    <span class="brand-logo lamborghini-logo">
+      <img src="/assets/images/logo/lamborghini-logo.png" alt="Lamborghini">
+    </span>
+    <span class="brand-logo">
+      <img src="/assets/images/logo/mercedes-logo.png" alt="Mercedes-Benz">
+    </span>
+    <span class="brand-logo">
+      <img src="/assets/images/logo/audi-logo.png" alt="Audi">
+    </span>
+  </section>
+
+  <footer class="public-footer">
+    <div class="footer-showcase">
+      <a routerLink="/home" class="brand-link footer-brand" aria-label="SpeedXcar home">
+        <span class="brand-icon" aria-hidden="true">
+          <img src="/assets/images/logo-speedxcar.png" alt="">
+        </span>
+        <span>SpeedXcar</span>
+      </a>
+
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a routerLink="/home">Home</a>
+        <a routerLink="/vehicles">Vehicles</a>
+        <a routerLink="/vehicles">About Us</a>
+        <a routerLink="/vehicles">Contact Us</a>
+      </nav>
+
+      <div class="social-links footer-social">
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="Instagram">ig</a>
+        <a href="#" aria-label="X">x</a>
+        <a href="#" aria-label="Youtube">yt</a>
+      </div>
+    </div>
+
+    <div class="footer-divider" aria-hidden="true"></div>
+
+    <div class="footer-top">
+      <div class="footer-contact">
+        <span>Address<strong>Oxford Ave. Cary, NC 27511</strong></span>
+        <span>Email<strong>nwiger@yahoo.com</strong></span>
+        <span>Phone<strong>+537 547-6401</strong></span>
+      </div>
+    </div>
+
+    <div class="footer-grid">
+      <div>
+        <h3>Faucibus faucibus pellentesque dictum turpis.</h3>
+        <p>Id pellentesque turpis massa a id iaculis lorem t...</p>
+      </div>
+
+      <div>
+        <h3>Useful links</h3>
+        <a routerLink="/vehicles">About us</a>
+        <a routerLink="/vehicles">Contact us</a>
+        <a routerLink="/vehicles">Gallery</a>
+        <a routerLink="/vehicles">Blog</a>
+        <a routerLink="/vehicles">F.A.Q</a>
+      </div>
+
+      <div>
+        <h3>Vehicles</h3>
+        <a routerLink="/vehicles">Sedan</a>
+        <a routerLink="/vehicles">Cabriolet</a>
+        <a routerLink="/vehicles">Sport</a>
+        <a routerLink="/vehicles">Minivan</a>
+        <a routerLink="/vehicles">SUV</a>
+      </div>
+
+      <div>
+        <h3>Download App</h3>
+        <span class="store-badge">Download on the App Store</span>
+        <span class="store-badge">Get it on Google Play</span>
+      </div>
+    </div>
+
+    <p class="copyright">Copyright SpeedXcar 2024. Design by Figma.guru</p>
+  </footer>
+</main>

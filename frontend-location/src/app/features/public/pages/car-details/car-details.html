@@ -1,0 +1,176 @@
+<main class="details-page">
+  <header class="site-header">
+    <a routerLink="/home" class="brand-link" aria-label="SpeedXcar home">
+      <span class="brand-icon" aria-hidden="true">
+        <img src="/assets/images/logo-speedxcar.png" alt="">
+      </span>
+      <span>SpeedXcar</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Navigation principale">
+      <a routerLink="/home" class="nav-button">Home</a>
+      <a routerLink="/vehicles" class="nav-button active" aria-current="page">Vehicles</a>
+      <a routerLink="/vehicles" class="nav-button">About Us</a>
+      <a routerLink="/vehicles" class="nav-button">Contact Us</a>
+    </nav>
+
+    <div class="help-box">
+      <span aria-hidden="true">Call</span>
+      <p>Need help?<strong>+996 247-1680</strong></p>
+    </div>
+  </header>
+
+  <section class="details-hero">
+    <div class="car-showcase">
+      <p class="eyebrow">{{ car.category }}</p>
+      <h1>{{ car.brand }}</h1>
+      <p class="price"><strong>${{ car.pricePerDay }}</strong> / day</p>
+
+      <div class="main-car">
+        <span class="car-shadow" aria-hidden="true"></span>
+        <img [src]="car.imageUrl" [alt]="car.brand + ' ' + car.model">
+      </div>
+
+      <div class="gallery-row" aria-label="Galerie voiture">
+        <button type="button" *ngFor="let image of galleryImages">
+          <img [src]="image" alt="">
+        </button>
+      </div>
+    </div>
+
+    <div class="details-info">
+      <h2>Technical Specification</h2>
+
+      <div class="spec-grid">
+        <article *ngFor="let spec of specs">
+          <span class="spec-icon" [ngClass]="'spec-icon-' + spec.icon" [ngSwitch]="spec.icon" aria-hidden="true">
+            <svg *ngSwitchCase="'gear'" viewBox="0 0 24 24">
+              <path d="M7 5a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"></path>
+              <path d="M17 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"></path>
+              <path d="M7 9v10"></path>
+              <path d="M17 5v10"></path>
+              <path d="M7 13h10"></path>
+            </svg>
+
+            <svg *ngSwitchCase="'fuel'" viewBox="0 0 24 24">
+              <path d="M6 3h8a1 1 0 0 1 1 1v17H5V4a1 1 0 0 1 1-1Z"></path>
+              <path d="M8 7h4"></path>
+              <path d="M15 8h2.5L20 11.5V19a2 2 0 0 1-2 2h-1"></path>
+              <path d="M20 12h-3"></path>
+            </svg>
+
+            <svg *ngSwitchCase="'doors'" viewBox="0 0 24 24">
+              <path d="M5 20V5.5A2.5 2.5 0 0 1 7.5 3H15l4 5v12H5Z"></path>
+              <path d="M8 7h6l2 3H8V7Z"></path>
+              <path d="M15 14h1.5"></path>
+            </svg>
+
+            <svg *ngSwitchCase="'conditioner'" viewBox="0 0 24 24">
+              <path d="M12 3v18"></path>
+              <path d="M4.5 7.5 19.5 16.5"></path>
+              <path d="M19.5 7.5 4.5 16.5"></path>
+              <path d="m9 5 3 3 3-3"></path>
+              <path d="m9 19 3-3 3 3"></path>
+            </svg>
+
+            <svg *ngSwitchCase="'seats'" viewBox="0 0 24 24">
+              <path d="M8 5a3 3 0 1 0 6 0 3 3 0 0 0-6 0Z"></path>
+              <path d="M5 21v-2a6 6 0 0 1 12 0v2"></path>
+              <path d="M17 11h2a2 2 0 0 1 2 2v8"></path>
+            </svg>
+
+            <svg *ngSwitchCase="'distance'" viewBox="0 0 24 24">
+              <path d="M5 19c5 0 4-14 9-14 2.5 0 4 2 4 4"></path>
+              <path d="M18 9h-3"></path>
+              <path d="M18 9v-3"></path>
+              <path d="M4 19h4"></path>
+              <path d="M16 19h4"></path>
+            </svg>
+          </span>
+          <h3>{{ spec.label }}</h3>
+          <p>{{ spec.value }}</p>
+        </article>
+      </div>
+
+      <button type="button" class="rent-button" (click)="rentCar()">Rent a car</button>
+      <p class="rent-message" *ngIf="rentMessage">{{ rentMessage }}</p>
+
+      <section class="equipment-section">
+        <h2>Car Equipment</h2>
+        <div class="equipment-grid">
+          <span *ngFor="let item of equipment">{{ item }}</span>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <section class="other-cars">
+    <div class="section-head">
+      <h2>Other cars</h2>
+      <a routerLink="/vehicles">View All</a>
+    </div>
+
+    <div class="cars-grid">
+      <app-vehicle-card
+        *ngFor="let item of otherCars; trackBy: trackByCarId"
+        [car]="item"
+      ></app-vehicle-card>
+    </div>
+  </section>
+
+  <footer class="public-footer">
+    <div class="footer-top">
+      <a routerLink="/home" class="brand-link footer-brand" aria-label="SpeedXcar home">
+        <span class="brand-icon" aria-hidden="true">
+          <img src="/assets/images/logo-speedxcar.png" alt="">
+        </span>
+        <span>SpeedXcar</span>
+      </a>
+
+      <div class="footer-contact">
+        <span>Address<strong>Oxford Ave. Cary, NC 27511</strong></span>
+        <span>Email<strong>nwiger@yahoo.com</strong></span>
+        <span>Phone<strong>+537 547-6401</strong></span>
+      </div>
+    </div>
+
+    <div class="footer-grid">
+      <div>
+        <h3>Faucibus faucibus pellentesque dictum turpis.</h3>
+        <p>Id pellentesque turpis massa a id iaculis lorem t...</p>
+        <div class="social-links">
+          <a href="#">f</a>
+          <a href="#">ig</a>
+          <a href="#">x</a>
+          <a href="#">yt</a>
+        </div>
+      </div>
+
+      <div>
+        <h3>Useful links</h3>
+        <a routerLink="/vehicles">About us</a>
+        <a routerLink="/vehicles">Contact us</a>
+        <a routerLink="/vehicles">Gallery</a>
+        <a routerLink="/vehicles">Blog</a>
+        <a routerLink="/vehicles">F.A.Q</a>
+      </div>
+
+      <div>
+        <h3>Vehicles</h3>
+        <a routerLink="/vehicles">Sedan</a>
+        <a routerLink="/vehicles">Cabriolet</a>
+        <a routerLink="/vehicles">Sport</a>
+        <a routerLink="/vehicles">Minivan</a>
+        <a routerLink="/vehicles">SUV</a>
+      </div>
+
+      <div>
+        <h3>Download App</h3>
+        <span class="store-badge">Download on the App Store</span>
+        <span class="store-badge">Get it on Google Play</span>
+      </div>
+    </div>
+
+    <p class="copyright">Copyright SpeedXcar 2024. Design by Figma.guru</p>
+  </footer>
+</main>
